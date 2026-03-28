@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LubalChat - Totally Real Dating App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- Login Screen -->
+    <div id="login-screen" class="screen active">
+      <div class="login-container">
+        <div class="app-logo">
+          <span class="logo-icon">&#x1F48C;</span>
+          <h1>LubalChat</h1>
+          <p class="tagline">Find your perfect match</p>
+        </div>
+        <form id="login-form">
+          <input type="text" id="username-input" placeholder="Enter your name" required>
+          <button type="submit" class="btn-primary">Start Matching</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Main App -->
+    <div id="main-screen" class="screen">
+      <!-- Tab Bar -->
+      <div class="tab-bar">
+        <button class="tab active" data-tab="matches">
+          <span class="tab-icon">&#x1F525;</span> Matches
+          <span id="matches-badge" class="badge hidden">!</span>
+        </button>
+        <button class="tab" data-tab="chats">
+          <span class="tab-icon">&#x1F4AC;</span> Chats
+          <span id="chats-badge" class="badge hidden">3</span>
+        </button>
+        <button class="tab" data-tab="reveal">
+          <span class="tab-icon">&#x1F50D;</span> Reveal
+        </button>
+      </div>
+
+      <!-- Matches Tab -->
+      <div id="matches-tab" class="tab-content active">
+        <h2>New Matches</h2>
+        <div id="profile-card" class="profile-card">
+          <img id="profile-img" src="" alt="Profile photo">
+          <div class="profile-info">
+            <h3 id="profile-name"></h3>
+            <p id="profile-age-loc"></p>
+            <p id="profile-bio"></p>
+            <div class="online-indicator"><span class="dot"></span> Online now</div>
+          </div>
+          <div class="swipe-buttons">
+            <button class="btn-skip" onclick="skipProfile()">&#x274C;</button>
+            <button class="btn-like" onclick="likeProfile()">&#x2764;&#xFE0F;</button>
+          </div>
+        </div>
+        <p id="no-more-profiles" class="hidden" style="text-align:center;color:#999;margin-top:40px;">
+          No more profiles nearby. Check back later!
+        </p>
+      </div>
+
+      <!-- Chats Tab -->
+      <div id="chats-tab" class="tab-content">
+        <h2>Messages</h2>
+        <div id="chat-list"></div>
+      </div>
+
+      <!-- Chat View -->
+      <div id="chat-view" class="tab-content">
+        <div class="chat-header">
+          <button class="btn-back" onclick="closeChat()">&#x2190;</button>
+          <img id="chat-avatar" src="" class="chat-header-avatar">
+          <div>
+            <span id="chat-name"></span>
+            <span id="chat-status" class="status-online">Online</span>
+          </div>
+        </div>
+        <div id="chat-messages"></div>
+        <div class="chat-input-bar">
+          <input type="text" id="chat-input" placeholder="Type a message...">
+          <button id="send-btn" onclick="sendMessage()">Send</button>
+        </div>
+      </div>
+
+      <!-- Reveal Tab -->
+      <div id="reveal-tab" class="tab-content">
+        <div class="reveal-container">
+          <h2>&#x26A0;&#xFE0F; The Truth Behind This App</h2>
+          <div class="reveal-card">
+            <h3>This entire app is fake.</h3>
+            <p>Every single profile you saw was generated. Nobody real is on the other end of those chats. Here's how scam dating apps trick people:</p>
+
+            <div class="reveal-point">
+              <span class="reveal-icon">&#x1F916;</span>
+              <div>
+                <strong>Fake Profiles</strong>
+                <p>All photos are AI-generated or stock photos. Names, ages, bios are randomly assembled. None of these people exist.</p>
+              </div>
+            </div>
+
+            <div class="reveal-point">
+              <span class="reveal-icon">&#x1F4AC;</span>
+              <div>
+                <strong>Bot Conversations</strong>
+                <p>The "person" replying is a script with pre-written flirty messages. It responds to anything you say with generic replies to keep you hooked.</p>
+              </div>
+            </div>
+
+            <div class="reveal-point">
+              <span class="reveal-icon">&#x1F525;</span>
+              <div>
+                <strong>"Online Now" is a Lie</strong>
+                <p>The green dot and "Online now" status are always on. It creates urgency so you feel like you need to respond immediately.</p>
+              </div>
+            </div>
+
+            <div class="reveal-point">
+              <span class="reveal-icon">&#x1F4B0;</span>
+              <div>
+                <strong>Instant Matches</strong>
+                <p>Everyone "likes" you back. Real dating apps have low match rates. If every swipe is a match, it's designed to get you to pay for premium features.</p>
+              </div>
+            </div>
+
+            <div class="reveal-point">
+              <span class="reveal-icon">&#x23F0;</span>
+              <div>
+                <strong>Timed Messages</strong>
+                <p>Bots wait a few seconds before replying to simulate "typing". The delay makes it feel real, but it's just a timer.</p>
+              </div>
+            </div>
+
+            <div class="reveal-point">
+              <span class="reveal-icon">&#x1F3AF;</span>
+              <div>
+                <strong>The Goal: Your Money</strong>
+                <p>These apps push you toward buying coins, tokens, or subscriptions to "unlock" chats, see who liked you, or send gifts. It's all a funnel to your wallet.</p>
+              </div>
+            </div>
+
+            <div class="reveal-warning">
+              <strong>How to spot a fake dating app:</strong>
+              <ul>
+                <li>Everyone matches with you immediately</li>
+                <li>Profiles are unusually attractive with generic bios</li>
+                <li>Everyone is "online" all the time</li>
+                <li>Conversations feel scripted and surface-level</li>
+                <li>The app pushes you to buy credits to keep chatting</li>
+                <li>You can never actually meet anyone in person</li>
+                <li>No video calls or voice messages allowed</li>
+              </ul>
+            </div>
+
+            <p class="reveal-footer">This demo was built to show you how these scams work. Stay safe out there. &#x1F499;</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
